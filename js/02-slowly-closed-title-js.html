@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td{
+            border: 1px solid #333;
+        }
+        li{
+            color: white;
+        }
+        h2{
+            line-height: 50px;
+            overflow: hidden;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var h2 = document.getElementsByTagName('h2')[0];
+            h2.style.border = "1px solid darkred";
+
+            var trs = document.getElementsByTagName('tr');
+            for(idx in trs){
+                if (idx % 2 == 0){
+                    trs[idx].style.background = "red";
+                } else if (idx % 2 == 1){
+                    trs[idx].style.background = "orange";
+                }
+            }
+
+            var height = h2.clientHeight;
+            var flag = false;
+            setInterval(function(){
+                if(height > 0 && !flag){
+                    height -= 1;
+                    h2.style.height = height + 'px';
+                    if (height <= 0) flag = true;
+                }else if(height < 50 && flag){
+                    height += 1;
+                    h2.style.height = height + 'px';
+                    if (height >= 50) flag = false;
+                }
+            }, 100)
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <table>
+        <caption>기본 필터 선택자</caption>
+        <colgroup>
+            <col>
+            <col>
+            <col>
+        </colgroup>
+        <tbody>
+            <tr><td>1</td><td>2</td><td>3</td></tr>
+            <tr><td>4</td><td>5</td><td>6</td></tr>
+            <tr><td>7</td><td>8</td><td>9</td></tr>
+            <tr><td>10</td><td>11</td><td>12</td></tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>

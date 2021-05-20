@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        button {
+            padding: 5px 15px;
+            background: #666;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var count = 0;
+        var imgPath;
+
+        function countImg() {
+            imgPath = "<img src='images/zoo" + count + ".jpg'>";
+            count++;
+            if (count > 9) {
+                return false;
+            }
+            return imgPath;
+        }
+
+        $(function() {
+            $('#append').click(function() {
+                $('#container').append(countImg());
+            })
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+        <button id='append' title='append'>Append</button>
+    </div>
+</body>
+
+</html>
