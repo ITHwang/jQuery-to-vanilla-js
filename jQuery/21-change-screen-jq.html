@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0}
+        #navigation{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            text-align: center;
+            background: #000;
+            z-index: 999;
+        }
+        #navigation ul{
+            margin-left: 400px;
+            margin-top: 50px;
+            list-style: none;
+        }
+        #navigation li{
+            display: inline;
+            margin-right: 10px;
+        }
+        #navigation li a{
+            text-decoration: none;
+            font-size : 1.1em;
+            color : #fff;
+  
+        }
+        #navigation li a:hover, #navigation li a.on{
+            color: #09f;
+        }
+        #wrap{
+           position: relative;
+            margin: 0 auto;
+            margin-top: 80px;
+            width: 800px;
+        }
+        
+        #wrap div{
+            width: 100%;
+            height: 400px;
+        }
+        #red{
+            background: red;
+        }
+        #blue{
+            background: blue;
+        }
+        #yellow{
+            background: yellow;
+        }
+        #black{
+            background: black;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery.scrollTo.js"></script>
+    <script src="js/jquery-ui.js"></script>
+</head>
+<body>
+    <div id="navigation">
+        <ul>
+            <li><a href="#red">RED</a></li>
+            <li><a href="#blue">BLUE</a></li>
+            <li><a href="#yellow">YELLOW</a></li>
+            <li><a href="#black">BLACK</a></li>
+        </ul>
+    </div>
+    
+    <div id="wrap">
+        <div id="red"></div>
+        <div id="blue"></div>
+        <div id="yellow"></div>
+        <div id="black"></div>
+    </div>
+    <script>
+        var goPage;
+        var topPos=90;
+        var scrollSpeed = 1000;
+        
+        $('#navigation a').click(function(e){
+            e.preventDefault();
+            $('#navigation a').removeClass('on');
+            $(this).addClass('on');
+            goPage = $(this).attr('href');
+            if(goPage == ''){
+                $(window).scrollTop(0);
+               
+            }else{
+                topPos = $(goPage).offset().top;
+                console.log(topPos);  
+                $(window).scrollTop(topPos);           
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

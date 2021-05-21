@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        p{
+            margin: 8px;
+            font-size: 20px;
+        }
+        .selected{
+            color: #f90;
+        }
+        .highlight{
+            background: #ff0;
+        }
+        .on{
+            color: blue;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>jQuery</p>
+        <p>Write less</p>
+        <p>do more</p>
+    </div>
+    <script>
+        $('p:last').addClass("selected highlight");
+//        $('p').mouseenter(function(){
+//            $(this).addClass("on");
+//        });
+//        $('p').mouseleave(function(){
+//            $(this).removeClass("on");
+//        });
+        
+        $('p').hover(function(){
+            $(this).addClass("on");
+        }, 
+        function(){
+            $(this).removeClass("on");
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

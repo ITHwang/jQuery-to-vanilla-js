@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body, div, ul, li, a{margin: 0; padding: 0;font-size: 12px;}
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        #popupzone{
+            position: relative;
+            left: 50px;
+            top: 100px;
+            width: 256px;
+            height: 145px;
+        }
+        #popupzoneControl{
+            width: 256px;
+            height: 23px;    
+        }
+        #popupzoneControl>div{
+            float: left;
+            height: 24px;
+        }
+        #popupzoneControl>#title{
+            width: 120px;
+        }
+        #popupzoneControl>control{
+            margin-top: 5px;
+            width: 134px;
+            height: 12px;
+        }
+        #popupzoneControl>#control>ul>li{
+            display: block;
+            float: left;
+            margin-right: 3px;
+            width: 11px;
+            height: 11px;
+        }
+        #popupzoneControl>#control>ul>li>a{
+            display: block;
+            width: 11px;
+            height: 11px;
+            background: #d7d7d7;
+        }
+        #popupzoneControl>#control>ul>li>a:hover, #popupzoneControl>#control>ul>li>a.on{
+            background: #1972b4;
+        }
+        #popup{
+            position: relative;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+            width: 256px;
+            height: 122px;
+            border: 1px solid #ccc;
+        }
+        #popup>#moving{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1792px;
+            height: 122px;
+        }
+        #popup>#moving>div{
+            float: left;
+            width: 256px;
+            height: 122px;
+        } 
+        li.play{
+            margin-right: 4px;
+        }li.play>a:hover, li.pause>a:hover{
+            border: 1px solid red;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var interval;
+        var current = 0;
+        var prev = 0;
+        var cnt;
+        function move1(){
+            $('#control li a').removeClass('on');
+            $('#control'+current).addClass('on');
+            targetx = current * 256 * (-1) + 'px';
+            
+            if(current > prev){
+                prevx = (current)*256*(-1)+'px';
+            }else{
+                prevx = (current + 1)*256*(-1)+'px';
+            }
+            console.log(prevx + ", " + targetx);
+            
+            prev = current;
+            $('#moving').css({left:prevx}).stop().animate({left:targetx},400);
+            
+        }
+        
+        function move(){
+            if(current < 6){
+                current++;
+            }else{
+                current = 0;
+            }
+            move1();
+        }
+        $(function(){
+            $('#control0').addClass('on');
+            interval = setInterval("move()",3000);
+            
+            $('#control>ul>li>a').click(function(){
+               
+                cnt = $(this).attr('id');
+                console.log(cnt);
+                
+                $('#control ul li a').removeClass('on');
+                $(this).addClass('on');
+                current = cnt.substr(-1) - 1;
+                move();
+                 clearInterval(interval);
+            });
+            
+            $('#play1').click(function(){
+               
+                interval = setInterval("move()",3000);
+            });
+            $('#pause1').click(function(){
+                clearInterval(interval);
+               
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="popupzone">
+        <div id="popupzoneControl">
+            <div id="title">
+                <img src="images5/popupzone_title.gif" class="mgt1">
+            </div>
+            <div id="control">
+                <ul>
+                    <li><a href="#" id="control0"></a></li>
+                    <li><a href="#" id="control1"></a></li>
+                    <li><a href="#" id="control2"></a></li>
+                    <li><a href="#" id="control3"></a></li>
+                    <li><a href="#" id="control4"></a></li>
+                    <li><a href="#" id="control5"></a></li>
+                    <li><a href="#" id="control6"></a></li>
+                    <li class="play">
+                        <a href="#">
+                            <img src="images5/play2_btn.gif" id="play1">
+                        </a>
+                    </li>
+                    <li class="pause">
+                        <a href="#">
+                            <img src="images5/pause2_btn.gif" id="pause1">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="popup">
+          <div id="moving">
+             <div><img src="images5/popupimg1.jpg"></div>
+             <div><img src="images5/popupimg2.jpg"></div>
+             <div><img src="images5/popupimg3.jpg"></div>
+             <div><img src="images5/popupimg4.jpg"></div>
+             <div><img src="images5/popupimg5.jpg"></div>
+             <div><img src="images5/popupimg6.jpg"></div>
+             <div><img src="images5/popupimg7.jpg"></div>
+          </div>
+     </div>   
+        
+        
+    </div>
+</body>
+</html>
+
+
+
+
+
+

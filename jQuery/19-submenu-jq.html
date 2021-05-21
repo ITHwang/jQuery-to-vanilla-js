@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body, div, ul, li, a{margin: 0; padding: 0}
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menuArea{
+            width: 1050px;
+            margin: 0 auto;
+        }
+        
+        #navi>li{
+            width: 200px;
+            float: left;
+            background: blue;
+        }
+        #navi>li>div{
+            width: 200px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        #navi>li>div>a{
+            color: #ddd;
+            
+        }
+        #navi>li>div>a:hover{
+            color: white;
+            font-weight: bold;
+        }
+        .sub{
+            height: 150px;
+            background: #ccc;
+            text-align: center;
+        }
+        .sub>li{
+            height: 30px;
+            line-height: 30px;
+        }
+        .sub>li>a{
+            color: #222;
+        }
+        .sub>li>a:hover{
+            color: white;
+                
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.sub').hide();
+            $('#navi>li>div>a').hover(function(){
+                $('.sub').show(); 
+            }, function(){
+               
+            });
+            $('.sub').hover(function(){
+                $('.sub').show()
+            }, function(){
+                $('.sub').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menuArea">
+        <ul id="navi">
+            <li id="menu1">
+                <div><a href="#" class="sub1">Navigation 01</a></div>
+                <ul id="sub1" class="sub">
+                    <li><a href="#">Submenu 0101</a></li>
+                    <li><a href="#">Submenu 0102</a></li>
+                    <li><a href="#">Submenu 0103</a></li>
+                    <li><a href="#">Submenu 0104</a></li>
+                </ul>
+            </li>
+            <li id="menu2">
+                <div><a href="#" class="sub2">Navigation 02</a></div>
+                <ul id="sub2" class="sub">
+                    <li><a href="#">Submenu 0201</a></li>
+                    <li><a href="#">Submenu 0202</a></li>
+                    <li><a href="#">Submenu 0203</a></li>
+
+                </ul>
+            </li>
+            <li id="menu3">
+                <div><a href="#" class="sub3">Navigation 03</a></div>
+                <ul id="sub3" class="sub">
+                    <li><a href="#">Submenu 0301</a></li>
+                    <li><a href="#">Submenu 0302</a></li>
+                    <li><a href="#">Submenu 0303</a></li>
+                    <li><a href="#">Submenu 0304</a></li>
+                    <li><a href="#">Submenu 0305</a></li>
+                </ul>
+            </li>
+            <li id="menu4">
+                <div><a href="#" class="sub4">Navigation 04</a></div>
+                <ul id="sub4" class="sub">
+                    <li><a href="#">Submenu 0301</a></li>
+                    <li><a href="#">Submenu 0302</a></li>
+                    <li><a href="#">Submenu 0303</a></li>
+                    <li><a href="#">Submenu 0304</a></li>
+                    <li><a href="#">Submenu 0305</a></li>
+                </ul>
+            </li>
+            <li id="menu5">
+                <div><a href="#" class="sub5">Navigation 04</a></div>
+                <ul id="sub5" class="sub">
+                    <li><a href="#">Submenu 0301</a></li>
+                    <li><a href="#">Submenu 0302</a></li>
+                    <li><a href="#">Submenu 0303</a></li>
+                    <li><a href="#">Submenu 0304</a></li>
+                    <li><a href="#">Submenu 0305</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

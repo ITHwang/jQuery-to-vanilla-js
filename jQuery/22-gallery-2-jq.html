@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 20px auto;
+            padding: 0;
+            width: 620px;
+            background: #192839;
+        }
+        #thumbs{
+            float: left;
+            width: 100px;
+        }
+        #thumbs>a>img{
+            margin-bottom: 3px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            width: 100px;
+            height: 100px;
+        }
+        #thumbs>a>img:hover{
+            border-color: #ef4018;
+        }
+        #large{
+            margin-left: 110px;
+            padding: 0;
+            width: 500px;
+            height: 348px;
+            border: 1px solid #ccc;
+        }
+        #large>img{
+            width: 490px;
+            height: 338px;
+            padding: 5px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#thumbs>a>img').click(function(e){
+                e.preventDefault();
+//                var path = $(this).parent().attr('href');
+                var path = $(this).attr('src');
+                console.log(path);
+                $('#large>img').attr('src',path);
+                
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="thumbs">
+        <a href="images1/pic1.jpg">
+            <img src="images1/pic1.jpg">
+        </a>
+        <a href="images1/pic2.jpg">
+            <img src="images1/pic2.jpg">
+        </a>
+        <a href="images1/pic3.jpg">
+            <img src="images1/pic3.jpg">
+        </a>
+    </div>
+    <div id="large"><img src="images1/pic1.jpg"></div>
+</body>
+</html>

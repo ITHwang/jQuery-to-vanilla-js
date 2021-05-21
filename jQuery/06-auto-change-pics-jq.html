@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+
+        }
+
+        #container {
+            width: 500px;
+            height: 300px;
+            border: 1px solid red; 
+            overflow: hidden;
+        }
+        ul{
+            width: 2100px;
+            height: 300px;
+           
+        }
+        img {
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+    <script>
+    $(function(){
+       var interval = setInterval(function(){
+           $('#showArea').prepend($('#showArea').find('img:last'));
+           
+       },2000); 
+    });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="container">
+            <ul id="showArea">
+                <img src="images/pic1.jpg">
+                <img src="images/pic2.jpg">
+                <img src="images/pic3.jpg">
+                <img src="images/pic4.jpg">
+            </ul>
+        </div>
+    </div>
+</body></html>

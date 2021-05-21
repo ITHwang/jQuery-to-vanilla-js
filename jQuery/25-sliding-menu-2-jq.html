@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0}
+        body{
+            margin: 20px;
+            color: #666;
+        }
+        a{
+            text-decoration: none;
+            color: #ccc;
+        }
+        .tabBox{
+            position: relative;
+            padding: 30px 0 0 0;
+            width: 600px;
+        }
+        .tabBox h3{
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            
+        }
+        .tabBox h3 a{
+            display: block;
+            padding: 5px;
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #333;
+            border-radius: 0 10px 0 0;
+            
+        }
+        .tabBox h3 a.on{
+            color: #000;
+            font-weight: bold;
+        }
+        .tabBox .more{
+            display: none;
+            position: absolute;
+            right: 5px;
+            top: 8px;
+        }
+        .tabBox .ctn1 h3{
+            left: 0;
+        }
+        .tabBox .ctn2 h3{
+            left: 110px;
+        }
+        .tabBox .ctn3 h3{
+            left: 220px;
+        }
+        .tabBox .box{
+            display: none;
+            width: 600px;
+            height: 300px;
+            border: 1px solid #333;
+           
+        }
+        .tabBox .ctnOn .box{
+            display: block;
+        }
+        
+        .tabBox .ctnOn .more{
+            display: block;
+        }
+        img{
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var tab = $('.tabBox h3 a');
+            
+            $('.tabBox .ctn1').addClass('ctnOn');
+            $('.tabBox .ctn1 a').addClass('on');
+            tab.on("click focus", function(e){
+                e.preventDefault();
+                $(tab).removeClass('on');
+                $('.ctn').removeClass('ctnOn');
+                $(this).parent().parent(".ctn").addClass('ctnOn');
+                $(this).addClass('on');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="tabBox">
+        <div class="ctn ctn1">
+            <h3><a href="#">Title 1</a></h3>
+            <p class="box"><img src="images/pic1.jpg"></p>
+            <a class="more" href="#">more1</a>
+        </div>
+        <div class="ctn ctn2">
+            <h3><a href="#">Title 2</a></h3>
+            <p class="box"><img src="images/pic2.jpg"></p>
+            <a class="more" href="#">more2</a>
+        </div>
+        <div class="ctn ctn3">
+            <h3><a href="#">Title 3</a></h3>
+            <p class="box"><img src="images/pic3.jpg"></p>
+            <a class="more" href="#">more3</a>
+        </div>
+    </div>
+</body>
+</html>

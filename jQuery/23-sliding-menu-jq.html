@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        #viewer{
+            position: relative;
+            width: 400px;
+            height: 74px;
+            background: #ccc;
+            padding: 4px 5px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        #imgGroup{
+            position: absolute;
+            width: 800px;
+            left: 4px;
+            top: 5px;
+        }
+        #imgGroup li{
+            list-style: none;
+            float: left;
+            margin-right: 2px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var interval;
+        var xpos = 4;
+        var sw = 0;
+        $(function(){
+            interval = setInterval(function(){
+              if(sw == 0){
+                   xpos -= 2;
+                   $('#imgGroup').animate({left: xpos + "px"},100); 
+                  if(xpos < - 390){
+                      sw = 1;
+                  }
+                  
+              }else{
+                  xpos += 2;
+                   $('#imgGroup').animate({left: xpos + "px"},100);
+                  if(xpos >= 4){
+                      sw = 0;
+                  }
+                  
+              }
+                
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="viewer">
+        <div id="imgGroup">
+            <ul>
+                <li><a href="#">
+                    <img src="image4/team1.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team2.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team3.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team4.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team5.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team6.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team7.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team8.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team9.jpg">
+                </a></li>
+                <li><a href="#">
+                    <img src="image4/team10.jpg">
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body{
+            margin: 0; padding: 0; font-size: 12px;color: #fff;
+            background: url(images1/background03.jpg) repeat-x;
+        }
+        img{
+            border: 0;
+        }
+        #wrap{
+            position: relative;
+            margin: 0 auto;
+            width: 999px;
+            height: 750px;
+            background: url(images1/main03.jpg) no-repeat;
+        }
+        #next{
+            position: absolute;
+            width: 999px;
+            height: 66px;
+        }
+        #next a{
+            display: block;
+            width: 999px;
+            height: 66px;
+        }
+        #banner{
+            position: absolute;
+            z-index: 2;
+            top: 92px;
+            width: 1009px;
+            height: 375px;
+            overflow: hidden;
+        }
+        #banner>div{
+            float: left;
+            width: 201px;
+            height: 375px;
+        }
+        #banner0{
+            background: url(images1/open0301.jpg) no-repeat;
+        }
+        #banner1{
+            background: url(images1/open0302.jpg) no-repeat;
+        }
+        #banner2{
+            background: url(images1/open0303.jpg) no-repeat;
+        }
+        div.relative{
+            position: relative;
+        }
+        span.head0, span.head1, span.head2{
+            display: block;
+            position: absolute;
+            width: 201px;
+            height: 375px;
+        }
+        span.head0 a,span.head1 a, span.head2 a{
+            display: block;
+            margin-top: 154px;
+        }
+        span.head0{
+            background: url(images1/close0301.jpg) no-repeat;
+        }
+        span.head1{
+            background: url(images1/close0302.jpg) no-repeat;
+        }
+        span.head2{
+            background: url(images1/close0303.jpg) no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="next">
+            <a href="#"></a>
+        </div>
+        <div id="banner">
+            <div id="banner0" class="hori">
+                <div class="relative">
+                    <span class="head0">
+                        <a href="#">
+                            <img class ="banner0" src="images1/clickbutton1.jpg">
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div id="banner1" class="hori">
+                <div class="relative">
+                    <span class="head1">
+                        <a href="#">
+                            <img class ="banner1" src="images1/clickbutton1.jpg">
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div id="banner2" class="hori">
+                <div class="relative">
+                    <span class="head2">
+                        <a href="#">
+                            <img class ="banner2" src="images1/clickbutton1.jpg">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   <script>
+    $('div.relative>span>a>img').click(function(){
+        var menu = $(this).attr('class');
+        console.log(menu);
+        for(var i=0; i < 3; i++){
+            var string = 'banner' + i;
+            if(string == menu){
+                $('div#banner' + i).children('div').animate({opacity:0},200);
+                $('div#banner' + i).animate({width:"598px"},300);
+            }else{
+                $('div#banner' + i).children('div').animate({opacity:1},200);
+                $('div#banner' + i).animate({width:"201px"},300);
+            }
+        }
+    });
+    </script> 
+    
+    
+    
+    
+    
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

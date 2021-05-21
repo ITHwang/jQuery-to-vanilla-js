@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <style>
+        button{
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: #666;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .container{
+            position: relative;
+            width: 500px;
+            height: auto;
+        }
+        #effect{
+            position: relative;
+            padding: 15px;
+            width: 200px;
+            height: auto;
+            background: #f4f4f4;
+            border-radius: 15px;
+        }
+        #effect h3{
+            margin: 0;
+            text-align: center;
+        }
+        #effect p{
+            font-size: 0.8em;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div id="effect">
+            <h3>Animate</h3>
+            <p>Animate 효과를 사용하여 텍스트의 변화도 줄 수 있다. 다양한 효과의 jQuery를 실무 작업에 활용해 보자.</p>
+        </div>
+    </div>
+    <button id="btn">Toggle Effect</button>
+    
+    <script>
+        var state = true;
+        $('#btn').click(function(){
+            if(state){
+                $('#effect').animate({"background-color":"#f90", width:"400px"},1000);
+            }else{
+                $('#effect').animate({"background-color":"#f4f4f4", width:"200px"},1000);
+            }
+            state = !state;
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

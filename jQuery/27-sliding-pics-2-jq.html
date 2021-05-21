@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrap{
+            position: relative;
+            margin: 0 auto;
+            width: 640px;
+            height: 400px;
+            background: #e3e3e3;
+        }
+        #bigimg{
+            padding: 10px 20px;
+        }
+        #wrap #gallery{
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            
+        }
+        #gallery img{
+            border: 2px solid #afafaf;
+        }
+        #gallery img:hover{
+            border-color: #fff;
+        }
+        #gallery img.on{
+            border-color: #f90;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var interval;
+        var count = 1;
+        function play(){
+            $('#gallery img').removeClass('on');
+                $('#gallery img').eq(count-1).addClass('on');
+                var path = "image3/big" + count +".jpg";
+                console.log(path);
+                $('#bigimg img').attr('src', path);
+                $('#bigimg img').css({opacity:0});
+                $('#bigimg img').animate({opacity:1},1900);
+        }
+        
+        function init(){
+            interval = setInterval(function(){
+                if(count < 3){
+                    count++;
+                }else{
+                    count = 1;
+                }
+                play();
+                
+            },2000);
+        }
+        
+        $(function(){
+            
+            init();
+            
+            $('#gallery a').click(function(){
+               var cnt = $(this).attr('title').substr(-1);
+                count = cnt;
+                play();
+                
+            });
+            
+            $('#bigimg img').hover(function(){
+                clearInterval(interval);
+            }, function(){
+               init(); 
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="bigimg">
+            <img src="image3/big1.jpg">
+        </div>
+        <div id="gallery">
+            <a href="#" title="img1"><img src="image3/small1.jpg"></a>
+            <a href="#" title="img2"><img src="image3/small2.jpg"></a>
+            <a href="#" title="img3"><img src="image3/small3.jpg"></a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

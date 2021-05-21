@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            position: relative;
+            margin: 0 auto;
+            width: 520px;
+            height: 300px;
+            background: #666;
+        }
+
+        #slide {
+            position: relative;
+            width: 500px;
+            height: 280px;
+            overflow: hidden;
+            border: 1px solid #333;
+            margin: 10px;
+        }
+
+        .img {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 1010px;
+            height: 280px;
+            list-style: none;
+        }
+
+        .img li {
+            display: block;
+            position: absolute;
+            width: 500px;
+            height: 280px;
+        }
+
+        .img li.first {
+            left: 0;
+            top: 0;
+        }
+
+        .img li.second {
+            left: 500px;
+            top: 0;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var interval;
+        var imgArray = new Array("image3/pic1.jpg", "image3/pic2.jpg",
+            "image3/pic3.jpg", "image3/pic4.jpg");
+        var count = 0;
+       
+        $(function() {
+            interval = setInterval(function(){
+                 if(count < 3){
+                count++; 
+            }else{
+                count = 0;
+            }
+            $('.first a img').attr('src',imgArray[count]);
+            $('.second a img').attr('src',imgArray[count+1]);
+            
+            $('.img').css({left: "0px"});
+            $('.img').animate({left:"-500px"},1000);  
+           
+            }, 2000);
+            
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="slide">
+            <ul class="img">
+                <li class="first">
+                    <a href="#"><img src="image3/pic1.jpg"></a>
+                </li>
+                <li class="second">
+                    <a href="#"><img src="image3/pic2.jpg"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
