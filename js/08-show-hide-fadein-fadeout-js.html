@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+        }
+        button{
+            margin: 10px 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: green;
+            color: white;
+        }
+        img{
+            width: 300px;
+            height: 330px;
+        }
+        .hidden{
+            display: none;
+            opacity: 0;
+        }
+        .appear{
+            animation: fade-in 1s;
+            animation-fill-mode: forwards;
+            display: block;
+        }
+        .disappear{
+            animation: fade-out 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fade-in{
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out{
+            from{
+                opacity: 1;
+            }
+            to{
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img class="appear" src="../imgs/images/zoo1.jpg">
+    <p></p>
+
+    <button id="hide">hide()</button>
+    <button id="show">show()</button>
+    <button id="fadein">fadein()</button>
+    <button id="fadeout">fadeout()</button>
+
+    <script>
+        const pic = document.getElementsByTagName('img')[0];
+
+        const hide = document.getElementById('hide');
+        hide.addEventListener('click', hhide);
+
+        const show = document.getElementById('show');
+        show.addEventListener('click', sshow);
+
+        const fadein = document.getElementById('fadein');
+        fadein.addEventListener('click', ffadein);
+
+        const fadeout = document.getElementById('fadeout');
+        fadeout.addEventListener('click', ffadeout);
+
+        function hhide(){
+            pic.style.display = 'none';
+        }
+
+        function sshow(){
+            pic.style.display = 'block';
+        }
+
+        function ffadein(){
+            if (pic.classList.contains('disappear')){
+                setTimeout(()=>{ pic.classList.remove('disappear')},1001);
+                pic.classList.remove('disappear');
+            }
+
+            if (pic.classList.contains('hidden')){
+                setTimeout(()=>{pic.classList.remove('hidden')}, 1001);
+            }
+            
+            if (!pic.classList.contains('appear')){
+                pic.classList.add('appear');
+            }
+        }
+
+        function ffadeout(){
+            if(pic.classList.contains('appear')){
+                setTimeout(()=>{ pic.classList.remove('appear')},1001);
+            }
+            pic.classList.add('disappear');
+            pic.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

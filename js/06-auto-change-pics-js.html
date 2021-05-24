@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+        }
+        #wrap{
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        #container{
+            width: 500px;
+            height: 300px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        ul{
+            width: 2100px;
+            height: 300px;
+        }
+        img{
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        window.onload = ()=>{
+            var interval = setInterval(()=>{
+                var area = document.getElementById('showArea');
+                var imgs = document.getElementsByTagName('img');
+                var img = imgs[imgs.length - 1];
+                area.prepend(img);
+            }, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <ul id="showArea">
+                <img src="../imgs/images/pic1.jpg">
+                <img src="../imgs/images/pic2.jpg">
+                <img src="../imgs/images/pic3.jpg">
+                <img src="../imgs/images/pic4.jpg">
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

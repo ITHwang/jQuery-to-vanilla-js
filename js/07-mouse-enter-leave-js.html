@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            margin: 8px;
+            font-size: 20px;
+        }
+        .selected{
+            color: #f90;
+        }
+        .highlight{
+            background: #ff0;
+        }
+        .on{
+            color: blue;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = ()=>{
+            const list = document.querySelectorAll('.container p');
+            const last = list[list.length - 1];
+            last.classList.add('selected', 'highlight');
+
+            for(let i=0; i<list.length; i++){
+                list[i].onmouseover = ()=>{
+                    list[i].classList.add('on');
+                }
+                list[i].onmouseout = ()=>{
+                    list[i].classList.remove('on');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <p>jQuery</p>
+        <p>Write less</p>
+        <p>do more</p>
+    </div>
+</body>
+</html>
