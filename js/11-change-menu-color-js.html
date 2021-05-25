@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        float: left;
+        list-style: none;
+      }
+      li a {
+        display: block;
+        padding: 15px 0px;
+        width: 120px;
+        text-align: center;
+        text-decoration: none;
+        background: #ff9900;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">Mobile</a></li>
+      <li><a href="#">jQuery</a></li>
+      <li><a href="#">Portpolio</a></li>
+    </ul>
+    <script>
+      var firstColor = "#ff9900";
+      var lastColor = "#a0c800";
+
+      var list = document.querySelectorAll("li a");
+      for (let i of list) {
+        i.addEventListener("mouseover", () => {
+          changeColor(i, firstColor, lastColor, 1000);
+        });
+        i.addEventListener("mouseout", () => {
+          changeColor(i, lastColor, firstColor, 1000);
+        });
+      }
+
+      function changeColor(element, startColor, endColor, duration) {
+        var interval = 100;
+        var steps = duration / interval;
+        var step_u = 1.0 / steps;
+        var u = 0.0;
+
+        var beforeR = parseInt(startColor.substr(1, 2), 16);
+        var beforeG = parseInt(startColor.substr(3, 2), 16);
+        var beforeB = parseInt(startColor.substr(5, 2), 16);
+        var afterR = parseInt(endColor.substr(1, 2), 16);
+        var afterG = parseInt(endColor.substr(3, 2), 16);
+        var afterB = parseInt(endColor.substr(5, 2), 16);
+
+        var theInterval = setInterval(function () {
+          if (u >= 1.0) {
+            clearInterval(theInterval);
+          }
+
+          var r = lerp(beforeR, afterR, u);
+          var g = lerp(beforeG, afterG, u);
+          var b = lerp(beforeB, afterB, u);
+
+          var colorname = "rgb(" + r + "," + g + "," + b + ")";
+          element.style.background = colorname;
+          u += step_u;
+        }, interval);
+      }
+
+      function lerp(a, b, u) {
+        return (1 - u) * a + u * b;
+      }
+    </script>
+  </body>
+</html>

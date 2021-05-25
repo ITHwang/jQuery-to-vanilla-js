@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+      integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+      crossorigin="anonymous"
+    ></script>
     <style>
-        li{
-            float: left;
-            list-style: none;
-            width: 120px;
-        }
-        li a{
-            display: block;
-            padding: 15px 0;
-            width: 120px;
-            text-align: center;
-            text-decoration: none;
-            background: #f90;
-            color: #fff;
-        }
+      li {
+        float: left;
+        list-style: none;
+        width: 120px;
+      }
+      li a {
+        display: block;
+        padding: 15px 0;
+        width: 120px;
+        text-align: center;
+        text-decoration: none;
+        background: #f90;
+        color: #fff;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <ul>
-        <li><a href="#" data-bg="#a0c800">Home</a></li>
-        <li><a href="#" data-bg="#a0c8c3">HTML</a></li>
-        <li><a href="#" data-bg="#a0c800">CSS</a></li>
-        <li><a href="#" data-bg="#a0c8c3">Mobile</a></li>
-        <li><a href="#" data-bg="#a0c800">jQuery</a></li>
-        <li><a href="#" data-bg="#a0c8c3">Portpolio</a></li>
+      <li><a href="#" data-bg="#a0c800">Home</a></li>
+      <li><a href="#" data-bg="#a0c8c3">HTML</a></li>
+      <li><a href="#" data-bg="#a0c800">CSS</a></li>
+      <li><a href="#" data-bg="#a0c8c3">Mobile</a></li>
+      <li><a href="#" data-bg="#a0c800">jQuery</a></li>
+      <li><a href="#" data-bg="#a0c8c3">Portpolio</a></li>
     </ul>
-    
+
     <script>
-        $('li a').hover(function(){
-            var overColor = $(this).attr('data-bg');
-            console.log(overColor);
-            $(this).stop().animate({"background-color":overColor},300);
-        }, function(){
-            $(this).stop().animate({"background-color":"#f90"},300);
-        });
+      $("li a").hover(
+        function () {
+          var overColor = $(this).attr("data-bg");
+          $(this).stop().animate({ "background-color": overColor }, 300);
+        },
+        function () {
+          $(this).stop().animate({ "background-color": "#f90" }, 300);
+        }
+      );
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</body>
+  </body>
 </html>

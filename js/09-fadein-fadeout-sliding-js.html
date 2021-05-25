@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        height: 330px;
+        left: 0;
+        top: 0;
+      }
+      img {
+        position: absolute;
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: #666;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img src="../imgs/images/zoo0.jpg" width="300" height="330" />
+    </div>
+    <button id="hide">Slide Hide</button>
+    <button id="show">Slide Show</button>
+
+    <script>
+      document.getElementById("hide").addEventListener("click", hideMe);
+      document.getElementById("show").addEventListener("click", showMe);
+
+      var divImg = document.getElementsByTagName("img")[0];
+
+      function hideMe() {
+        animateLeft(divImg, 0, 400, 1);
+      }
+
+      function showMe() {
+        animateRight(divImg, 400, 0, 0);
+      }
+
+      function animateLeft(obj, from, to, opac) {
+        var box = obj;
+        if (from >= to) {
+          return;
+        } else {
+          box.style.left = from + "px";
+          box.style.opacity = opac;
+          setTimeout(() => {
+            animateLeft(obj, from + 5, to, opac - 0.01);
+          }, 15);
+        }
+      }
+
+      function animateRight(obj, from, to, opac) {
+        var box = obj;
+        if (from <= to) {
+          box.style.opacity = 1;
+          return;
+        } else {
+          box.style.left = from + "px";
+          box.style.opacity = opac;
+          setTimeout(() => {
+            animateRight(obj, from - 5, to, opac + 0.01);
+          }, 15);
+        }
+      }
+    </script>
+  </body>
+</html>

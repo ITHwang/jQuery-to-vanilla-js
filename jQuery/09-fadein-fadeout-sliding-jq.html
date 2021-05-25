@@ -1,53 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        div{
-            position: relative;
-            overflow: hidden;
-            width: 300px;
-            height: 330px;
-            left: 0;
-            top: 0;
-        }
-        button{
-            margin-bottom: 10px;
-            padding: 5px 15px;
-            background: #666;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        height: 330px;
+        left: 0;
+        top: 0;
+      }
+      button {
+        margin-bottom: 10px;
+        padding: 5px 15px;
+        background: #666;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     </style>
     <script>
-    $(function(){
-        $('#hide').click(function(){
-           $('div').animate({opacity:"0", left: "500"},2000); 
+      $(function () {
+        $("#hide").click(function () {
+          $("div").animate({ opacity: "0", left: "500" }, 2000);
         });
-        $('#show').click(function(){
-           $('div').animate({opacity:"1", left: "0"},2000);   
+        $("#show").click(function () {
+          $("div").animate({ opacity: "1", left: "0" }, 2000);
         });
-    });
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <img src="images/zoo0.jpg" width="300" height="330">
+      <img src="../imgs/images/zoo0.jpg" width="300" height="330" />
     </div>
     <button id="hide">Slide Hide</button>
     <button id="show">Slide Show</button>
-</body>
+  </body>
 </html>
-
-
-
-
-
