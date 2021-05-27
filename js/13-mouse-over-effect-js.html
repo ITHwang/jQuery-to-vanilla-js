@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #over {
+                position: absolute;
+                left: 0;
+                top: 150px;
+                width: 50px;
+                height: 324px;
+                background: #111;
+                z-index: 1;
+            }
+            #move {
+                position: absolute;
+                top: 150px;
+                left: -244px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="over"></div>
+        <div id="move">
+            <!-- 294 x 324 -->
+            <img src="../imgs/images/zoo5.jpg" />
+        </div>
+        <script>
+            var toggle = document.getElementById("over");
+            var target = document.getElementById("move");
+
+            function linearInterpolation(a, b, u) {
+                return (1 - u) * a + u * b;
+            }
+
+            function changeOpacity(obj, from, to, duration) {
+                var step = duration / 10;
+                var du = 1.0 / step;
+                var u = 0.0;
+
+                var opacInterval = setInterval(() => {
+                    if (u >= 1) clearInterval(opacInterval);
+                    else {
+                        var changed = linearInterpolation(from, to, u);
+                        obj.style.opacity = changed;
+                        u += du;
+                    }
+                }, 10);
+            }
+
+            function changeLeft(obj, from, to, duration) {
+                var step = duration / 10;
+                var du = 1.0 / step;
+                var u = 0.0;
+
+                var leftInterval = setInterval(() => {
+                    if (u >= 1) clearInterval(leftInterval);
+                    else {
+                        var changed = linearInterpolation(from, to, u);
+                        obj.style.left = changed + "px";
+                        u += du;
+                    }
+                }, 10);
+            }
+
+            var show = () => {
+                changeOpacity(target, 0, 1, 1000);
+                changeLeft(target, -244, 50, 1000);
+            };
+
+            var hide = () => {
+                changeOpacity(target, 1, 0, 2000);
+                changeLeft(target, 50, -244, 1000);
+            };
+
+            toggle.addEventListener("mouseover", show);
+            toggle.addEventListener("mouseout", hide);
+        </script>
+    </body>
+</html>

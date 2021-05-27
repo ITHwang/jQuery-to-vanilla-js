@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            button {
+                margin-top: 10px;
+                padding: 5px 15px;
+                background: #666;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            #effect {
+                padding: 15px;
+                width: 200px;
+                height: auto;
+                background: #ccc;
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="effect">
+                <h3>Animate</h3>
+                <p>
+                    Animate 효과를 사용하여 텍스트의 변화도 줄 수 있다. 다양한 효과의 jQuery를 실무
+                    작업에 활용해 보자.
+                </p>
+            </div>
+        </div>
+        <button>Toggle Effect</button>
+        <script>
+            var target = document.getElementById("effect");
+
+            function lerp(a, b, u) {
+                //선형보간법
+                return (1 - u) * a + u * b;
+            }
+
+            function getRGB(color) {
+                //각 색의 숫자 파싱
+                if (color[0] == "#") {
+                    if (color.length == 4) {
+                        //#abc 형식이면
+                        var r = parseInt(color[1] + color[1], 16);
+                        var g = parseInt(color[2] + color[2], 16);
+                        var b = parseInt(color[3] + color[3], 16);
+                        return [r, g, b];
+                    } else {
+                        //#aabbcc 형식이면
+                        var r = parseInt(color.substr(1, 2), 16);
+                        var g = parseInt(color.substr(3, 2), 16);
+                        var b = parseInt(color.substr(5, 2), 16);
+                        return [r, g, b];
+                    }
+                } else {
+                    //rgb(a, b, c) 형식이면
+                    var reg = /[a-z\(\)\s]/g;
+                    return color
+                        .replace(reg, "")
+                        .split(",")
+                        .map((e) => parseInt(e));
+                }
+            }
+
+            function changeColor(after, duration, interval) {
+                var before = window.getComputedStyle(target).backgroundColor;
+                var beforeColors = getRGB(before);
+                var afterColors = getRGB(after);
+
+                var step = parseInt(duration / interval); //step 수만큼 반복하여 변화
+                var du = 1 / step; //step에 따른 선형 보간 계수 변화량
+                var u = 0.0; //선형 보간 계수
+
+                var theInterval = setInterval(() => {
+                    if (u >= 1.0) clearInterval(theInterval);
+                    //step 수만큼 반복했으면
+                    else {
+                        var r = lerp(beforeColors[0], afterColors[0], u);
+                        var g = lerp(beforeColors[1], afterColors[1], u);
+                        var b = lerp(beforeColors[2], afterColors[2], u);
+
+                        var colorname = "rgb(" + r + "," + g + "," + b + ")";
+                        target.style.background = colorname;
+                        u += du;
+                    }
+                }, interval);
+            }
+
+            function changeWidth(after, duration, interval) {
+                var step = parseInt(duration / interval);
+                var du = 1 / step;
+                var u = 0.0;
+
+                var theInterval = setInterval(() => {
+                    var before = window.getComputedStyle(target).width;
+                    var reg = /[a-zA-Z]/g; //'100px' -> '100'
+                    before = before.replace(reg, "");
+                    after = after.replace(reg, "");
+
+                    if (u >= 1.0) clearInterval(theInterval);
+                    else {
+                        var w = lerp(before, after, u);
+                        target.style.width = w + "px";
+                        u += du;
+                    }
+                }, interval);
+            }
+
+            var state = false;
+
+            var btn = document.getElementsByTagName("button")[0];
+            btn.onclick = () => {
+                if (!state) {
+                    changeColor("#f90", 1000, 10);
+                    changeWidth("400px", 1000, 10);
+                    state = true;
+                } else {
+                    changeColor("#ccc", 1000, 10);
+                    changeWidth("200px", 1000, 10);
+                    state = false;
+                }
+            };
+        </script>
+    </body>
+</html>
