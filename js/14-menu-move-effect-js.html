@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            div.horizontal {
+                float: left;
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+                text-align: center;
+                cursor: pointer;
+                background: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="horizontal">menu0</div>
+            <div class="horizontal">menu1</div>
+            <div class="horizontal">menu2</div>
+        </div>
+        <script>
+            var menus = document.getElementsByClassName("horizontal");
+            var tmp;
+            var interval;
+            for (let i = 0; i < menus.length; i++) {
+                menus[i].addEventListener("mouseover", () => {
+                    menus[i].style.backgroundColor = "#666";
+                    var batch = 10;
+                    var duration = 500;
+                    var step = duration / batch;
+
+                    var before = window.getComputedStyle(menus[i]).width;
+                    var reg = /[a-zA-Z]/g;
+                    before = parseInt(before.replace(reg, ""));
+                    tmp = before; //save point of original before
+                    var after = 200;
+
+                    var diff = (after - before) / step;
+
+                    interval = setInterval(() => {
+                        if (before >= after) {
+                            clearInterval(interval);
+                        }
+                        before += diff;
+                        menus[i].style.width = before + "px";
+                    }, batch);
+                });
+                menus[i].addEventListener("mouseout", () => {
+                    clearInterval(interval);
+                    menus[i].style.width = tmp + "px";
+                    menus[i].style.backgroundColor = "#ccc";
+                });
+            }
+        </script>
+    </body>
+</html>
