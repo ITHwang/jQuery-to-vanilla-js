@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul, li{
+            margin: 0; padding: 0;
+        }
+        li{
+            list-style: none;
+            position: relative;
+            left: 100px;
+            top: 100px;
+            width: 115px;
+            height: 94px;
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .pageCurl{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 115px;
+            height: 94px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <img src="../imgs/image2/menu1_over.jpg">
+            <div class="pageCurl">
+                <img src="../imgs/image2/menu1.jpg">
+            </div>
+        </li>
+        <li>
+            <img src="../imgs/image2/menu2_over.jpg">
+            <div class="pageCurl">
+                <img src="../imgs/image2/menu2.jpg">
+            </div>
+        </li>
+        <li>
+            <img src="../imgs/image2/menu3_over.jpg">
+            <div class="pageCurl">
+                <img src="../imgs/image2/menu3.jpg">
+            </div>
+        </li>
+        <li>
+            <img src="../imgs/image2/menu4_over.jpg">
+            <div class="pageCurl">
+                <img src="../imgs/image2/menu4.jpg">
+            </div>
+        </li>
+    </ul>
+    <script>
+        var list = document.querySelectorAll('ul>li');
+        var interval;
+        var width, height, left, topp;
+        
+        function parse(str){
+            var reg = /[a-zA-Z]/g;
+            return parseInt(str.replace(reg, ""));
+        }
+
+        for(let i=0; i<list.length; i++){
+            var target;
+
+            list[i].addEventListener('mouseover', ()=>{
+                target = list[i].getElementsByClassName('pageCurl')[0];
+                width = parse(window.getComputedStyle(target).width);
+                height = parse(window.getComputedStyle(target).height);
+                left = parse(window.getComputedStyle(target).left);
+                topp = parse(window.getComputedStyle(target).top);
+
+                var duration = 500;
+                var batch = 10;
+                var step = duration / batch;
+
+                var d_left = -1 * width / step;
+                var d_top = height / step;
+                
+                interval = setInterval(()=>{
+                    if ((-1)*(left) > width || top > height){
+                        clearInterval(interval);
+                    }
+                    left += d_left;
+                    topp += d_top;
+                    target.style.left = left + 'px';
+                    target.style.top = topp + 'px';
+                }, batch)
+            });
+            list[i].addEventListener('mouseout', ()=>{
+                clearInterval(interval);
+                target.style.left = '0px';
+                target.style.top = '0px';
+            });
+        }
+    </script>
+</body>
+</html>
