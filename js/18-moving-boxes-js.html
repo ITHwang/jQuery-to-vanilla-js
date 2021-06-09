@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                background: #f90;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <script>
+            function lerp(a, b, u) {
+                return (1 - u) * a + u * b;
+            }
+            function parse(str) {
+                return parseInt(str.replace(/[a-zA-Z]/g, ""));
+            }
+            function sleep(ms) {
+                const wakeUpTime = Date.now() + ms;
+                while (Date.now() < wakeUpTime) {}
+            }
+
+            const list = document.getElementsByTagName("div");
+
+            for (var i = 0; i < list.length; i++) {
+                move(0, 700, i);
+            }
+            setTimeout(() => {
+                for (var i = 0; i < list.length; i++) {
+                    move(700, 0, i);
+                }
+            }, 5000);
+
+            function move(from, to, idx) {
+                setTimeout(() => {
+                    var duration = 3000;
+                    var batch = 10;
+                    var step = duration / batch;
+                    var u = 0.0;
+                    var du = 1 / step;
+
+                    setTimeout(function foo() {
+                        list[idx].style.left = lerp(from, to, u) + "px";
+                        u += du;
+                        if (u < 1.0) {
+                            setTimeout(foo, batch);
+                        }
+                    }, batch);
+                }, idx * 500);
+            }
+        </script>
+    </body>
+</html>
