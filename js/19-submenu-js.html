@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                list-style: none;
+            }
+            a {
+                text-decoration: none;
+            }
+
+            #menuArea {
+                width: 1050px;
+                margin: 0 auto;
+            }
+            #navi > li {
+                float: left;
+                background: blue;
+                width: 200px;
+                line-height: 40px;
+            }
+            .menu,
+            .subnavi > li {
+                text-align: center;
+            }
+            .subnavi {
+                background: #ccc;
+            }
+
+            .menu > a {
+                color: white;
+            }
+            .menu:hover {
+                font-weight: bold;
+            }
+
+            .subnavi > li > a {
+                color: black;
+            }
+            .subnavi > li > a:hover {
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="menuArea">
+            <ul id="navi">
+                <li>
+                    <div class="menu"><a href="#">Navigation 01</a></div>
+                    <ul class="subnavi">
+                        <li><a href="#">Submenu 01</a></li>
+                        <li><a href="#">Submenu 02</a></li>
+                        <li><a href="#">Submenu 03</a></li>
+                        <li><a href="#">Submenu 04</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="menu"><a href="#">Navigation 02</a></div>
+                    <ul class="subnavi">
+                        <li><a href="#">Submenu 01</a></li>
+                        <li><a href="#">Submenu 02</a></li>
+                        <li><a href="#">Submenu 03</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="menu"><a href="#">Navigation 03</a></div>
+                    <ul class="subnavi">
+                        <li><a href="#">Submenu 01</a></li>
+                        <li><a href="#">Submenu 02</a></li>
+                        <li><a href="#">Submenu 03</a></li>
+                        <li><a href="#">Submenu 04</a></li>
+                        <li><a href="#">Submenu 05</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="menu"><a href="#">Navigation 04</a></div>
+                    <ul class="subnavi">
+                        <li><a href="#">Submenu 01</a></li>
+                        <li><a href="#">Submenu 02</a></li>
+                        <li><a href="#">Submenu 03</a></li>
+                        <li><a href="#">Submenu 04</a></li>
+                        <li><a href="#">Submenu 05</a></li>
+                        <li><a href="#">Submenu 06</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="menu"><a href="#">Navigation 05</a></div>
+                    <ul class="subnavi">
+                        <li><a href="#">Submenu 01</a></li>
+                        <li><a href="#">Submenu 02</a></li>
+                        <li><a href="#">Submenu 03</a></li>
+                        <li><a href="#">Submenu 04</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <script>
+            const menus = document.getElementsByClassName("menu");
+            const subnavis = document.getElementsByClassName("subnavi");
+            const navis = document.querySelectorAll("#navi>li");
+
+            for (var sub of subnavis) {
+                sub.style.display = "none";
+            }
+
+            for (let i in navis) {
+                navis[i].addEventListener("mouseover", () => {
+                    subnavis[i].style.display = "block";
+                });
+                navis[i].addEventListener("mouseout", () => {
+                    subnavis[i].style.display = "none";
+                });
+            }
+        </script>
+    </body>
+</html>

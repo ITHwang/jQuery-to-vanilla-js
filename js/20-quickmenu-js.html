@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            a {
+                text-decoration: none;
+                color: white;
+            }
+            #container {
+                width: 80%;
+                height: 2000px;
+                background: #ccc;
+                margin: 0 auto;
+            }
+            #quick {
+                position: absolute;
+                left: 85%;
+                top: 50px;
+                width: 80px;
+                background: #666;
+                color: #fff;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="quick">
+            <div>quick<br />menu</div>
+            <br /><br /><br />
+            <div id="top"><a href="#">Top</a></div>
+        </div>
+        <div id="container">main container</div>
+    </body>
+    <script>
+        function lerp(a, b, u) {
+            return (1 - u) * a + u * b;
+        }
+
+        const quick = document.getElementById("quick");
+
+        document.addEventListener("scroll", () => {
+            var from = window.getComputedStyle(quick).top;
+            from = parseInt(from.replace(/[a-zA-Z]/g, ""));
+            var to = window.scrollY + 50;
+
+            var duration = 500;
+            var batch = 10;
+            var step = duration / batch;
+            var du = 1 / step;
+            var u = 0.0;
+
+            setTimeout(function foo() {
+                quick.style.top = lerp(from, to, u) + "px";
+                u += du;
+
+                if (u < 1.0) {
+                    setTimeout(foo, batch);
+                }
+            }, batch);
+        });
+    </script>
+</html>
