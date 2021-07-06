@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #navigation {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 80px;
+                text-align: center;
+                background: #000;
+                z-index: 999;
+            }
+            #navigation ul {
+                margin-top: 50px;
+                list-style: none;
+            }
+            #navigation li {
+                display: inline;
+                font-size: 1.1em;
+                color: #fff;
+                cursor: pointer;
+            }
+            #navigation li:hover {
+                color: #09f;
+            }
+            #wrap {
+                position: relative;
+                margin: 0 auto;
+                width: 800px;
+                height: 3000px;
+            }
+            #wrap div {
+                width: 100%;
+                height: 400px;
+            }
+            #RED {
+                background: red;
+            }
+            #BLUE {
+                background: blue;
+            }
+            #YELLOW {
+                background: yellow;
+            }
+            #BLACK {
+                background: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navigation">
+            <ul>
+                <li>RED</li>
+                <li>BLUE</li>
+                <li>YELLOW</li>
+                <li>BLACK</li>
+            </ul>
+        </div>
+        <div id="wrap">
+            <div id="RED"></div>
+            <div id="BLUE"></div>
+            <div id="YELLOW"></div>
+            <div id="BLACK"></div>
+        </div>
+    </body>
+    <script>
+        var list = document.querySelectorAll("#navigation li");
+
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener("click", () => {
+                var name = list[i].outerText;
+                var target = document.getElementById(name);
+                var location = target.offsetTop;
+
+                window.scrollTo({ top: location, behavior: "smooth" });
+            });
+        }
+    </script>
+</html>
