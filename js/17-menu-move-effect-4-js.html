@@ -1,158 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        *{
-            margin: 0; padding: 0;
-        }
-        body{
-            background: #666;
-        }
-        #container{
-            position: relative;
-            left: 0;
-            top: 0;
-        }
-        #home{
-            position: absolute;
-            z-index: 1;
-            left: 0px;
-            top: 100px;
-            width: 50px;
-            height: 200px;
-            background: #5f5f5f;
-            color: #fff;
-            line-height: 200px;
-        }
-        ul{
-            position: absolute;
-            left: -600px;
-            top: 100px;
-            width: 600px;
-            height: 200px;
-            list-style: none;
-        }
-        ul li{
-            float: left;
-            width: 200px;
-            height: 200px;
-            opacity: 0.2;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #666;
+      }
+      #container {
+        position: relative;
+        left: 0;
+        top: 0;
+      }
+      #home {
+        position: absolute;
+        z-index: 1;
+        left: 0px;
+        top: 100px;
+        width: 50px;
+        height: 200px;
+        background: #5f5f5f;
+        color: #fff;
+        line-height: 200px;
+      }
+      ul {
+        position: absolute;
+        left: -600px;
+        top: 100px;
+        width: 600px;
+        height: 200px;
+        list-style: none;
+      }
+      ul li {
+        float: left;
+        width: 200px;
+        height: 200px;
+        opacity: 0.2;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div id="home">HOME</div>
-        <ul id="menu">
-            <li><img src="../imgs/images1/th_bg1.jpg"></li>
-            <li><img src="../imgs/images1/th_bg2.jpg"></li>
-            <li><img src="../imgs/images1/th_bg3.jpg"></li>
-        </ul>
+      <div id="home">HOME</div>
+      <ul id="menu">
+        <li><img src="../imgs/images1/th_bg1.jpg" /></li>
+        <li><img src="../imgs/images1/th_bg2.jpg" /></li>
+        <li><img src="../imgs/images1/th_bg3.jpg" /></li>
+      </ul>
     </div>
     <script>
-        function parse(str){
-            var reg = /[a-zA-Z]/g;
-            return parseInt(str.replace(reg, ""));
-        }
+      function parse(str) {
+        var reg = /[a-zA-Z]/g;
+        return parseInt(str.replace(reg, ""));
+      }
 
-        function lerp(a, b, u){
-            return (1 - u) * a + u * b;
-        }
+      function lerp(a, b, u) {
+        return (1 - u) * a + u * b;
+      }
 
-        var menu = document.getElementById('menu');
-        var toggle = document.getElementById('home');
-        
-        // home toggle
-        var state = false;
-        var home_toggle = ()=>{
+      var menu = document.getElementById("menu");
+      var toggle = document.getElementById("home");
 
-            var interval1, interval2, duration=1000, batch=10, step, u, du; 
-            var origin_left;
+      // home toggle
+      var state = false;
+      var home_toggle = () => {
+        var interval1,
+          interval2,
+          duration = 1000,
+          batch = 10,
+          step,
+          u,
+          du;
+        var origin_left;
 
-            var show = ()=>{
-                clearInterval(interval2);
-                state = true;
+        var show = () => {
+          clearInterval(interval2);
+          state = true;
 
-                origin_left = parse(window.getComputedStyle(menu).left);
-                step = duration / batch;
-                du = 1 / step;
-                u = 0.0;
+          origin_left = parse(window.getComputedStyle(menu).left);
+          step = duration / batch;
+          du = 1 / step;
+          u = 0.0;
 
-                interval1 = setInterval(()=>{
-                    if (u > 1.0){
-                        clearInterval(interval1);
-                    }
-
-                    u += du;
-                    menu.style.left = lerp(origin_left, 50, u) + 'px';
-                }, batch);
+          interval1 = setInterval(() => {
+            if (u > 1.0) {
+              clearInterval(interval1);
             }
 
-            var hide = ()=>{
-                clearInterval(interval1);
-                state = false;
+            u += du;
+            menu.style.left = lerp(origin_left, 50, u) + "px";
+          }, batch);
+        };
 
-                origin_left = parse(window.getComputedStyle(menu).left);
-                step = duration / batch;
-                du = 1 / step;
-                u = 0.0;
+        var hide = () => {
+          clearInterval(interval1);
+          state = false;
 
-                interval2 = setInterval(()=>{
-                    if (u > 1.0){
-                        clearInterval(interval2);
-                    }
+          origin_left = parse(window.getComputedStyle(menu).left);
+          step = duration / batch;
+          du = 1 / step;
+          u = 0.0;
 
-                    u += du;
-                    menu.style.left = lerp(origin_left, -600, u) + 'px';
-                }, batch);
+          interval2 = setInterval(() => {
+            if (u > 1.0) {
+              clearInterval(interval2);
             }
 
-            if (!state){
-                show();
-            } else {
-                hide();
+            u += du;
+            menu.style.left = lerp(origin_left, -600, u) + "px";
+          }, batch);
+        };
+
+        if (!state) {
+          show();
+        } else {
+          hide();
+        }
+      };
+      toggle.addEventListener("click", home_toggle);
+
+      // hover opacity
+      var list = document.getElementById("menu").children;
+      var interval1,
+        interval2,
+        duration = 1000,
+        batch = 10,
+        u,
+        du;
+      var step = duration / batch;
+      var du = 1 / step;
+      var originOpacity;
+      for (let i = 0; i < list.length; i++) {
+        list[i].addEventListener("mouseover", () => {
+          clearInterval(interval2);
+          originOpacity = window.getComputedStyle(list[i]).opacity;
+          u = 0.0;
+
+          interval1 = setInterval(() => {
+            if (u > 1.0) {
+              clearInterval(interval1);
             }
-        }
-        toggle.addEventListener('click', home_toggle);
-        
-        // hover opacity
-        var list = document.getElementById('menu').children;
-        var interval1, interval2, duration=1000, batch=10, u, du;
-        var step = duration / batch;
-        var du = 1 / step;
-        var originOpacity;
-        for (let i=0; i<list.length; i++){
-            list[i].addEventListener("mouseover", ()=>{
-                clearInterval(interval2);
-                originOpacity = window.getComputedStyle(list[i]).opacity;
-                u = 0.0;
+            u += du;
+            list[i].style.opacity = lerp(originOpacity, 1.0, u);
+          }, batch);
+        });
+        list[i].addEventListener("mouseout", () => {
+          clearInterval(interval1);
+          originOpacity = window.getComputedStyle(list[i]).opacity;
+          u = 0.0;
 
-                interval1 = setInterval(()=>{
-                    if (u > 1.0){
-                        clearInterval(interval1);
-                    }
-                    u += du;
-                    list[i].style.opacity = lerp(originOpacity, 1.0, u);
-                }, batch)
-            })
-            list[i].addEventListener("mouseout", ()=>{
-                clearInterval(interval1);
-                originOpacity = window.getComputedStyle(list[i]).opacity;
-                u = 0.0;
-
-                interval2 = setInterval(()=>{
-                    if (u > 1.0){
-                        clearInterval(interval2);
-                    }
-                    u += du;
-                    list[i].style.opacity = lerp(originOpacity, 0.2, u);
-                }, batch)
-            })
-        }
+          interval2 = setInterval(() => {
+            if (u > 1.0) {
+              clearInterval(interval2);
+            }
+            u += du;
+            list[i].style.opacity = lerp(originOpacity, 0.2, u);
+          }, batch);
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
+<!-- sdfsdf -->
